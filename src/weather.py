@@ -2,6 +2,7 @@ from . import current
 from . import coordenates
 from key import key
 import requests
+import sys
 
 class Weather(coordenates.Coords):
 	def __init__(self, city="Porto", country=None):
@@ -9,7 +10,11 @@ class Weather(coordenates.Coords):
 
 		url = "https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={key}&units=metric"
 		url = url.format(lat=self.lat, lon=self.lon, key=key)
-		self.r = requests.get(url).json()
+		self.r = requests.get(url)
+		if self.r.status_code != 200:
+			print("Not Found")
+			sys.exit()
+		self.r = self.r.json()
 
 		self.weather = self.r["list"]
 		for i in self.weather:

@@ -3,14 +3,27 @@ from tabulate import tabulate
 from datetime import date
 import sys
 
-today = date.isoformat(date.today())
-w = weather.Weather()
+city = "Porto"
+country = "PT"
+day = "all"
 
-if len(sys.argv) == 1:
+for i in range(len(sys.argv))[1:]:
+	arg1, arg2 = sys.argv[i].split("=")
+	match arg1:
+		case "city":
+			city = arg2
+		case "country":
+			country = arg2
+		case "day":
+			day = arg2
+
+today = date.isoformat(date.today())
+w = weather.Weather(city=city, country=country)
+if day == "all":
 	t = tabulate(w.weather, headers="keys", tablefmt="fancy_grid")
 	print(t)
 	sys.exit()
-elif sys.argv[1] == "today":
+elif day == "today":
 	table = []
 	for i in w.weather:
 		if i["date"] == today:
@@ -21,8 +34,8 @@ elif sys.argv[1] == "today":
 else:
 	table = []
 	for i in w.weather:
-		day = i["date"].lstrip("2025-0")
-		if i["date"] == sys.argv[1] or day == sys.argv[1]:
+		tday = i["date"].lstrip("2025-0")
+		if i["date"] == day or tday == day:
 			table.append(i)
 	t = tabulate(table, headers="keys", tablefmt="fancy_grid")
 	print(t)
