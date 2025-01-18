@@ -6,5 +6,7 @@ Usage:  python3 main.py
 It uses OpenWeather API. The file key.py contains a free key with a limit of 1000 API calls per day.
 
 Required packages:
+
 requests --> `pip install requests`
+
 tabulate --> `pip install tabulate`
