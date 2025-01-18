@@ -45,5 +45,6 @@ try:
 	print("no data")
 except ValueError:
 	print(
-		"Usage: 'python3 main.py day=day city=city country=county'\n\n" +
+		"Usage: 'python3 main.py day=day city=city country=county'\n" +
+		"        day=yyyy-mm-dd or day=m-dd\n\n" +
 		"By defaut, eg: 'python3 main.py', city=Porto, country=PT, and day will show the following 5 days from today.")
