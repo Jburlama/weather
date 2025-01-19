@@ -1,4 +1,4 @@
-This is a Python script that displays weather information. By default, it assumes the city as Porto and the country as Portugal and will return the result five days from today.
+This is a Python script that displays weather information. By default, it assumes the city as Porto and the country as Portugal and will return the result of five days from today.
 
 Usage: `python3 main.py`
 
